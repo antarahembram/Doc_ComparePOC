@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import { DocumentcompareService } from '../documentcompare.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
   public fileList2=new Array();
   public files=new Array();
  public showCompare:any;
-  constructor() { }
+ public textToShow:any;
+  constructor(private documentcompareservice:DocumentcompareService) { }
 
   async ngOnInit() {
     this.showCompare=false;
@@ -79,9 +81,19 @@ export class HomeComponent implements OnInit {
   }
 
   submit(){
-    this.showCompare=true;
-    console.log(this.fileList1)
-    console.log(this.fileList2)
+    if(this.fileList1.length==this.fileList2.length)
+    {
+      this.showCompare=true;
+      console.log(this.fileList1)
+      console.log(this.fileList2)
+
+    }
+    else{
+      alert("Number of Expected PDFs is not same as Actual PDFs")
+    }
+    // this.documentcompareservice.method().subscribe((res)=>{console.log(res);
+    // this.textToShow=res;
+    // })
 
   }
 
