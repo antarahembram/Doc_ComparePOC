@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import { DocumentcompareService } from '../documentcompare.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
   public files=new Array();
  public showCompare:any;
  public textToShow:any;
-  constructor(private documentcompareservice:DocumentcompareService) { }
+ public path:any;
+  constructor(private documentcompareservice:DocumentcompareService,private router:Router) { }
 
   async ngOnInit() {
     this.showCompare=false;
@@ -66,6 +68,12 @@ export class HomeComponent implements OnInit {
     for(let i=0;i<event.target.files.length;i++)
     {
     this.fileList2.push(event.target.files[i])
+    // this.fileData  = event.target.files[i];
+    //   reader.onload = () => {
+        
+    //      this.fileContent = reader.result;
+    //   };
+    // reader.readAsBinaryString(this.fileData)
 
     }
     //  this.fileData  = event.target.files[0];
@@ -83,10 +91,25 @@ export class HomeComponent implements OnInit {
   submit(){
     if(this.fileList1.length==this.fileList2.length)
     {
-      this.showCompare=true;
-      console.log(this.fileList1)
-      console.log(this.fileList2)
+      // this.showCompare=true;
 
+      // console.log(this.fileList1)
+      // console.log(this.fileList2)
+      var fileList=new Array();
+      for(var i=0;i<this.fileList1.length;i++)
+      {
+        var row=new Array();
+        row.push(this.fileList1[i].name)
+        row.push(this.fileList2[i].name)
+        fileList.push(row);
+      }
+      console.log(fileList)
+      this.documentcompareservice.compare(fileList).subscribe((res)=>{
+        console.log(res);
+        this.router.navigateByUrl('/compareResult')
+        
+
+      })
     }
     else{
       alert("Number of Expected PDFs is not same as Actual PDFs")
@@ -97,10 +120,4 @@ export class HomeComponent implements OnInit {
 
   }
 
-  gotoHome()
-  {
-    this.showCompare=false;
-    this.fileList1=[]
-    this.fileList2=[]
-  }
 }

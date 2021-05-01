@@ -9,10 +9,10 @@ export class DocumentcompareService {
 
   constructor(private http: HttpClient) { }
 
-  textUrl : string ='http://localhost:8081/api/v1/getString';
+  textUrl : string ='http://localhost:8081/api/v1/compare';
 
-  method():Observable<any>
+  compare(fileList:any):Observable<any>
   {
-    return this.http.get<any>(this.textUrl)
+    return this.http.post<any>(this.textUrl,fileList)
   }
 }
