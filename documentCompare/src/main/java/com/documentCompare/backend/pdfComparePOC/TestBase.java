@@ -13,7 +13,8 @@ import java.io.IOException;
 
 public class TestBase {
 //	String resultLocation="C:\\Users\\RUSHI\\Desktop\\Selinum Learing\\PDF compare\\Set1PDFs\\results\\";
-	String resultLocation="C:\\Users\\Antara Hembram\\Desktop\\document-compare\\src\\assets\\Results\\";
+	/*set your path here instead of "C:\Users\Antara Hembram" */
+	String resultLocation="C:\\Users\\Antara Hembram\\Doc_ComparePOC\\document-compare\\src\\assets\\Results\\";
 	String resultLocation2="../Results/";
 //	String driverFile="D:\\JavaWorkSpaceV1\\POC\\src\\test\\java\\testResource\\Driver.xlsx";
 	String driverFile="C:\\Users\\Antara Hembram\\Desktop\\Driver - Copy.xlsx";

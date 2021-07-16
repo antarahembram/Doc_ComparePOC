@@ -34,8 +34,11 @@ public class DocCompareController {
 //        Object[][] data=testBase.getTwoDymansionObjectArrayData();
         for(int index=0;index<totalList.length;index++)
         {
-            String exp= "C:\\Users\\Antara Hembram\\Desktop\\POC_INTEGRation\\PDF\\" + (String)totalList[index][0];
-            String act = "C:\\Users\\Antara Hembram\\Desktop\\POC_INTEGRation\\PDF\\" + (String)totalList[index][1];
+            /*Change the path
+            -where the PDFs are kept
+             */
+            String exp= "C:\\Users\\Antara Hembram\\Doc_ComparePOC\\PDF\\" + (String)totalList[index][0];
+            String act = "C:\\Users\\Antara Hembram\\Doc_ComparePOC\\PDF\\" + (String)totalList[index][1];
             testBase.testPdfCompare(exp,act);
         }
         testBase.close();
